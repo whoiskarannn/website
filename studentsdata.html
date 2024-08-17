@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Students Data</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <nav id="nav">
+    <a class="nav_link" href="/studentsdata.html">Students data</a>
+    <a class="nav_link" href="/todays_remark.html">Mark todays attendence</a>
+    <a class="nav_link" href="/attendencereport.html">View attendence Report</a>
+  </nav>
+
+  <a class="nav_link" style="position: absolute; left: 0; margin-top: -40px; margin-left: 30px; " href="home.html">Home</a>
+    
+    <section class="data_section">
+      <h1>Class 1</h1>
+        <table class="data-table">
+        <thead>
+            <tr style="background-color: white;">
+            <!-- <th>ID</th> -->
+            <th>Email</th>
+            <th>Roll no</th>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Password</th>
+           
+            </tr>
+        </thead>
+        <tbody>
+          
+        </tbody>
+        </table> 
+        
+        <div class="addst">
+        <a href="addstudents.html">Add Student</a>
+        <a href="syudent_functions.html">Update Student data</a>
+        <!-- <a href="addstudents.html">Remove Student</a> -->
+    </div>
+    </section>
+    
+
+
+    
+  </body>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        fetch('/studentdata')
+          .then(response => response.json())
+          .then(data => {
+            const tableBody = document.querySelector('.data-table tbody');
+            data.forEach(item => {
+              const row = document.createElement('tr');
+              row.innerHTML = `
+                <td>${item.email}</td>
+                <td>${item.rollno}</td>
+                <td>${item.studentname}</td>
+                <td>${item.gender}</td>
+                <td>${item.password}</td>
+                <!-- Add other data fields as needed -->
+              `;
+              tableBody.appendChild(row);
+            });
+          })
+          .catch(error => console.error('Error fetching data:', error));
+      });
+    </script>
+    <script src="server.js"></script>
+</html>

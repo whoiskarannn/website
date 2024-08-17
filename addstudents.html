@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Students</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <a style="position: absolute; left: 0; padding-left: 20px; " href="home.html">Home</a>
+    
+    <div class="container">
+       
+        <form action="/addstudents" method="post" class="signupForm"> <h2>Add Student</h2>
+            <input type="text" id="email" name="email" placeholder="email" required>
+            <input type="text" id="rollno" name="rollno" placeholder="rollno" required>
+            <input type="text" id="studentname" name="studentname" placeholder="studentname" required>
+            <select name="gender" id="gender" required>
+                <option value="male">male</option>
+                <option value="female">female</option>
+                <option value="other">other</option>
+            </select>
+            <input type="password" id="password" name="password" placeholder="Password" required>
+            <button type="submit">Add</button>
+        </form>
+        <div id="message" class="message"></div>
+    </div>
+    <script src="server.js"></script>
+</body>
+</html>

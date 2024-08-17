@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+  <link rel="stylesheet" href="server.js">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body{
+      width: 100%;
+      font-family:'Courier New', Courier, monospace;
+    }
+    #nav{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #000;
+      height: 90px;
+      margin: -20px;
+      gap: 20px;
+      color: white;
+    }
+    .nav_link{
+      margin-top: 10px;
+      color: white;
+      text-decoration: none;
+      padding: 10px;
+      border-radius: 5px;
+    }
+    .nav_link:hover{
+      background: rgb(3, 173, 133);
+      /* color: #000; */
+      transition: 0.5s;
+    }
+    #selectedMonth{
+      margin-top: 20px;
+    }
+    .chart_selection{
+      display: flex;
+    }
+    #chartType {
+      transform: scale(1.1,1.1);margin-left: 10px;
+      margin-top: 20px;
+      height: 20px;
+    }
+    #monthSelect{
+      margin-left: 10px;
+    }
+    section{
+     overflow-x: auto;
+      width: 95%;
+      display: flex;
+
+      /* max-height: 550px; */
+    }
+    canvas{
+      height: 550px;
+      width: 1700px;
+    }
+  </style>
+</head>
+<body>
+  <nav id="nav">
+    <a class="nav_link" href="/studentsdata.html">Students data</a>
+    <a class="nav_link" href="/todays_remark.html">Mark todays attendence</a>
+    <a class="nav_link" href="/attendencereport.html">View attendence Report</a>
+  </nav>
+  <a style="position: absolute; right: 30px; margin-top: -40px;" class="nav_link" href="student_donut.html">Advance Report</a>
+
+  <h1>Student Attendence Report</h1>
+  <h2 style="margin-top: -20px;">For class 1</h2>
+  <h2>Total students : 15</h2>
+  
+  <div class="chart_selection">
+    <p>Select Chart Type :</p>
+    <select id="chartType"> 
+      <option value="bar">Bar</option>
+      <option value="line">Line</option>
+    </select>
+  </div>
+
+  <div class="chart_selection">
+    <label for="monthSelect">Select Month:</label>
+    <select id="monthSelect">
+      <option value="2024-07">July 2024</option>
+      <option value="2024-08">August 2024</option>
+      <option value="2024-09">November 2024</option>
+    </select>
+  </div>
+  <h2 id="selectedMonth"> Displaing selected date </h2>
+
+  <section>
+      <canvas id="attendanceChart"></canvas>
+  </section>
+<br><hr>
+
+  <!-- Existing table section -->
+    <!-- New section for displaying student summary -->
+    
+
+  
+  <script>
+    let attendanceChart = null;
+
+      async function fetchData() {
+          try {
+              const response = await fetch('/attendance-summary');
+              const data = await response.json();
+              return data;
+          } catch (error) {
+              console.error('Error fetching attendance data:', error);
+              return null;
+          }
+      }
+
+      function filterDataByMonth(data, selectedMonth) {
+          const filteredDates = [];
+          const filteredTotalP = [];
+          const filteredTotalA = [];
+
+          data.dates.forEach((date, index) => {
+              if (date.startsWith(selectedMonth)) { // Check if the date starts with the selected month (e.g., "2024-07")
+                  filteredDates.push(date);
+                  filteredTotalP.push(data.totalP[index]);
+                  filteredTotalA.push(data.totalA[index]);
+              }
+          });
+
+          return {
+              dates: filteredDates,
+              totalP: filteredTotalP,
+              totalA: filteredTotalA
+          };
+      }
+
+      function createChart(chartType, data) {
+          const ctx = document.getElementById('attendanceChart').getContext('2d');
+
+          if (attendanceChart) {
+              attendanceChart.destroy();
+          }
+
+          attendanceChart = new Chart(ctx, {
+              type: chartType,
+              data: {
+                  labels: data.dates,
+                  datasets: [
+                      {
+                          label: 'Present',
+                          data: data.totalP,
+                          backgroundColor: 'rgba(31, 224, 131, 0.422)',
+                          borderColor: 'rgb(31, 224, 131)',
+                          borderWidth: 1,
+                      },
+                      {
+                          label: 'Absent',  
+                          data: data.totalA,
+                          backgroundColor: 'rgba(240, 33, 78, 0.34)',
+                          borderColor: 'rgba(255, 99, 132, 1)',
+                          borderWidth: 1,
+                          
+                      }
+                  ]
+              },
+              options: {
+                  responsive: true,
+                  maintainAspectRatio: false,
+                  scales: {
+                      x: {
+                          beginAtZero: true
+                      },
+                      y: {
+                          beginAtZero: true
+                      }
+                  }
+              }
+          });
+      }
+
+      async function updateChart() {
+          const selectedType = document.getElementById('chartType').value;
+          const selectedMonth = document.getElementById('monthSelect').value;
+          const data = await fetchData();
+
+          if (data) {
+              const filteredData = filterDataByMonth(data, selectedMonth);
+              createChart(selectedType, filteredData);
+          }else{
+            res.send("nothing to show")
+          }
+      }
+
+      document.getElementById('chartType').addEventListener('change', updateChart);
+      document.getElementById('monthSelect').addEventListener('change', updateChart);
+
+      // Initial chart creation
+      updateChart();
+
+</script>
+
+<script>
+  const monthSelect = document.getElementById('monthSelect');
+  const selectedMonth = document.getElementById('selectedMonth');
+
+  monthSelect.addEventListener('change', function() {
+      selectedMonth.textContent = `${this.options[this.selectedIndex].text}`;
+  });
+
+  selectedMonth.textContent = `${monthSelect.options[monthSelect.selectedIndex].text}`;
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script> 
+<script src="server.js"></script>
+</html>

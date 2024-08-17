@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mark todays attendence</title>
+    <link rel="stylesheet" href="index.css">
+    <style>
+        
+        [id^="id"] {
+            display: none;
+        }
+        [for^="fieldName"] {
+            display: none;
+        }
+        [name^="fieldName"] {
+            max-width: 120px;
+            display: none;
+        }
+        [name^="fieldValue"] {
+            max-width: 50px;
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+<section id="tr_section">
+
+    <table id="tr_section_table">
+       <tbody>
+            <tr>
+                <th>Name</th>
+                <th id="tableDate"></th>
+                <th>Remark</th>
+            </tr>
+        </tbody>
+    </table>
+      
+  
+    <form action="/home.html" method="post" id="addFieldForm">
+        <!-- document 1 -->
+      
+        <div class="student_row">
+            <div class="student_row_fields_name">
+                <label for="id1">Amit</label>
+                <input type="text" id="id1" name="id1" value="66b430f11964edb18064cea7" required>
+            </div>
+            <div class="student_row_fields_date">
+                <label for="fieldName1">Date :</label>
+                <input type="text" id="fieldName1" name="fieldName1" value="" required>
+            </div>
+            <div class="student_row_fields_remark">
+                <label for="fieldValue1">Remark:</label>
+                <input type="text" placeholder="P/A" id="fieldValue1" name="fieldValue1" required>
+            </div>            
+        </div>
+    <!-- document 1 -->
+        <!-- document 2 -->
+        <div class="student_row">
+            <div class="student_row_fields_name">
+                <label for="id2">Sahil</label>
+                <input type="text" id="id2" name="id2" value="66b4356cee335146df91df37" required>
+            </div>
+            <div class="student_row_fields_date">
+                <label for="fieldName2">Date :</label>
+                <input type="text" id="fieldName2" name="fieldName2" required>
+            </div>
+            <div class="student_row_fields_remark">
+                <label for="fieldValue2">Remark:</label>
+                <input type="text" placeholder="P/A" id="fieldValue2" name="fieldValue2" required>
+            </div>            
+        </div>
+    <!-- document 2 -->
+        <!-- document 3 -->
+
+        <div class="student_row">
+            <div class="student_row_fields_name">
+                <label for="id3">Vinit</label>
+                <input type="text" id="id3" name="id3" value="66b43d58e415253285dcd1aa" required>
+            </div>
+            <div class="student_row_fields_date">
+                <label for="fieldName3">Date :</label>
+                <input type="text" id="fieldName3" name="fieldName3" required>
+            </div>
+            <div class="student_row_fields_remark">
+                <label for="fieldValue3">Remark:</label>
+                <input type="text" placeholder="P/A" id="fieldValue3" name="fieldValue3" required>
+            </div>            
+        </div>
+    <!-- document 3 -->
+        <!-- document 4 -->
+        <div class="student_row">
+            <div class="student_row_fields_name">
+                <label for="id4">Aadarsh</label>
+                <input type="text" id="id4" name="id4" value="66b43d6ce415253285dcd1b1" required>
+            </div>
+            <div class="student_row_fields_date">
+                <label for="fieldName4">Date :</label>
+                <input type="text" id="fieldName4" name="fieldName4" required>
+            </div>
+            <div class="student_row_fields_remark">
+                <label for="fieldValue4">Remark:</label>
+                <input type="text" placeholder="P/A" id="fieldValue4" name="fieldValue4" required>
+            </div>            
+        </div>
+    <!-- document 4 -->
+        <!-- document 5 -->
+        <div class="student_row">
+            <div class="student_row_fields_name">
+                <label for="id5">Shreya</label>
+                <input type="text" id="id5" name="id5" value="66b43d7ee415253285dcd1b7" required>
+            </div>
+            <div class="student_row_fields_date">
+                <label for="fieldName5">Date :</label>
+                <input type="text" id="fieldName5" name="fieldName5" required>
+            </div>
+            <div class="student_row_fields_remark">
+                <label for="fieldValue5">Remark:</label>
+                <input type="text" placeholder="P/A" id="fieldValue5" name="fieldValue5" required>
+            </div>            
+        </div>
+    <!-- document 5 -->
+        <!-- document 6 -->
+        <div class="student_row">
+            <div class="student_row_fields_name">
+                <label for="id6">Sakshi</label>
+                <input type="text" id="id6" name="id6" value="66b43d92e415253285dcd1bd" required>
+            </div>
+            <div class="student_row_fields_date">
+                <label for="fieldName6">Date :</label>
+                <input type="text" id="fieldName6" name="fieldName6" required>
+            </div>
+            <div class="student_row_fields_remark">
+                <label for="fieldValue6">Remark:</label>
+                <input type="text" placeholder="P/A" id="fieldValue6" name="fieldValue6" required>
+            </div>            
+        </div>
+    <!-- document 6 -->
+        <!-- document 7 -->
+        <div class="student_row">
+            <div class="student_row_fields_name">
+                <label for="id7">Raj</label>
+                <input type="text" id="id7" name="id7" value="66b43fd3e415253285dcd1db" required>
+            </div>
+            <div class="student_row_fields_date">
+                <label for="fieldName7">Date :</label>
+                <input type="text" id="fieldName7" name="fieldName7" required>
+            </div>
+            <div class="student_row_fields_remark">
+                <label for="fieldValue7">Remark:</label>
+                <input type="text" placeholder="P/A" id="fieldValue7" name="fieldValue7" required>
+            </div>            
+        </div>
+    <!-- document 7 -->
+        <!-- document 8 -->
+        <div class="student_row">
+            <div class="student_row_fields_name">
+                <label for="id8">Geeta</label>
+                <input type="text" id="id8" name="id8" value="66b44010e415253285dcd1e2" required>
+            </div>
+            <div class="student_row_fields_date">
+                <label for="fieldName8">Date :</label>
+                <input type="text" id="fieldName8" name="fieldName8" required>
+            </div>
+            <div class="student_row_fields_remark">
+                <label for="fieldValue8">Remark:</label>
+                <input type="text" placeholder="P/A" id="fieldValue8" name="fieldValue8" required>
+            </div>            
+        </div>
+    <!-- document 8 -->
+        <!-- document 9 -->
+        <div class="student_row">
+            <div class="student_row_fields_name">
+                <label for="id9">Petu</label>
+                <input type="text" id="id9" name="id9" value="66b4402fe415253285dcd1e8" required>
+            </div>
+            <div class="student_row_fields_date">
+                <label for="fieldName9">Date :</label>
+                <input type="text" id="fieldName9" name="fieldName9" required>
+            </div>
+            <div class="student_row_fields_remark">
+                <label for="fieldValue9">Remark:</label>
+                <input type="text" placeholder="P/A" id="fieldValue9" name="fieldValue9" required>
+            </div>            
+        </div>
+    <!-- document 9 -->
+        <!-- document 10 -->
+        <div class="student_row">
+            <div class="student_row_fields_name">
+                <label for="id10">tina</label>
+                <input type="text" id="id10" name="id10" value="66b442dfe415253285dcd213" required>
+            </div>
+            <div class="student_row_fields_date">
+                <label for="fieldName10">Date :</label>
+                <input type="text" id="fieldName10" name="fieldName10" required>
+            </div>
+            <div class="student_row_fields_remark">
+                <label for="fieldValue10">Remark:</label>
+                <input type="text" placeholder="P/A" id="fieldValue10" name="fieldValue10" required>
+            </div>            
+        </div>
+    <!-- document 10 -->
+        <!-- document 11 -->
+        <div class="student_row">
+            <div class="student_row_fields_name">
+                <label for="id11">Raju</label>
+                <input type="text" id="id11" name="id11" value="66b45a60e415253285dcd222" required>
+            </div>
+            <div class="student_row_fields_date">
+                <label for="fieldName11">Date :</label>
+                <input type="text" id="fieldName11" name="fieldName11" required>
+            </div>
+            <div class="student_row_fields_remark">
+                <label for="fieldValue11">Remark:</label>
+                <input type="text" placeholder="P/A" id="fieldValue11" name="fieldValue11" required>
+            </div>            
+        </div>
+    <!-- document 11 -->
+        <!-- document 12 -->
+        <div class="student_row">
+            <div class="student_row_fields_name">
+                <label for="id12">Priya</label>
+                <input type="text" id="id12" name="id12" value="66b45a78e415253285dcd228" required>
+            </div>
+            <div class="student_row_fields_date">
+                <label for="fieldName12">Date :</label>
+                <input type="text" id="fieldName12" name="fieldName12" required>
+            </div>
+            <div class="student_row_fields_remark">
+                <label for="fieldValue12">Remark:</label>
+                <input type="text" placeholder="P/A" id="fieldValue12" name="fieldValue12" required>
+            </div>            
+        </div>
+    <!-- document 12 -->
+        <!-- document 13 -->
+        <div class="student_row">
+            <div class="student_row_fields_name">
+                <label for="id13">Ria</label>
+                <input type="text" id="id13" name="id13" value="66b45a89e415253285dcd22e" required>
+            </div>
+            <div class="student_row_fields_date">
+                <label for="fieldName13">Date :</label>
+                <input type="text" id="fieldName13" name="fieldName13" required>
+            </div>
+            <div class="student_row_fields_remark">
+                <label for="fieldValue13">Remark:</label>
+                <input type="text" placeholder="P/A" id="fieldValue13" name="fieldValue13" required>
+            </div>            
+        </div>
+    <!-- document 13 -->
+        <!-- document 14 -->
+        <div class="student_row">
+            <div class="student_row_fields_name">
+                <label for="id14">Sanjay</label>
+                <input type="text" id="id14" name="id14" value="66b45a9ce415253285dcd234" required>
+            </div>
+            <div class="student_row_fields_date">
+                <label for="fieldName14">Date :</label>
+                <input type="text" id="fieldName14" name="fieldName14" required>
+            </div>
+            <div class="student_row_fields_remark">
+                <label for="fieldValue14">Remark:</label>
+                <input type="text" placeholder="P/A" id="fieldValue14" name="fieldValue14" required>
+            </div>            
+        </div>
+    <!-- document 14 -->
+        <!-- document 15 -->
+        <div class="student_row">
+            <div class="student_row_fields_name">
+                <label for="id15">Lakshmi</label>
+                <input type="text" id="id15" name="id15" value="66b45ad6e415253285dcd23a" required>
+            </div>
+            <div class="student_row_fields_date">
+                <label for="fieldName15">Date :</label>
+                <input type="text" id="fieldName15" name="fieldName15" required>
+            </div>
+            <div class="student_row_fields_remark">
+                <label for="fieldValue15">Remark:</label>
+                <input type="text" placeholder="P/A" id="fieldValue15" name="fieldValue15" required>
+            </div>            
+        </div>
+    <!-- document 15 -->
+        <button class="btns" type="submit">Submit</button>
+        <a class="btns" href="addvance_remark.html">Advance Mode</a>
+    </form>
+</section>
+    <script src="server.js"></script>
+    <script>
+   
+
+            document.getElementById('addFieldForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                // Collect form data for 15 documents
+                const formData = {};
+                let allFieldsFilled = true;
+
+                for (let i = 1; i <= 15; i++) {
+                    
+                    const id = document.getElementById(`id${i}`).value;
+                    const fieldName = document.getElementById(`fieldName${i}`).value;
+                    const fieldValue = document.getElementById(`fieldValue${i}`).value;
+
+                    console.log(`Document ${i} ID:`, id); 
+                    console.log(`Document ${i} Field Name:`, fieldName); 
+                    console.log(`Document ${i} Field Value:`, fieldValue); 
+
+
+                    if (!id || !fieldName || !fieldValue) {
+                        allFieldsFilled = false;
+                        console.warn(`Document ${i} is missing required fields`);
+                    }
+
+                    formData[`document${i}`] = { id, fieldName, fieldValue };
+                }
+
+                if (allFieldsFilled) {
+                    // Sending data to the server
+                    fetch('/add-fields', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(formData),
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Success:', data);
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                    });
+                } else {
+                    alert('Please fill in all required fields.');
+                }
+            });
+
+
+        
+    </script>
+    <script>
+        // getting current date 
+        const today = new Date().toISOString().split('T')[0];
+        for (let i = 1; i <= 15; i++) {
+            document.getElementById(`fieldName${i}`).value = today;
+         }
+    </script>
+    <script>
+        const currenrdate = new Date().toISOString().split('T')[0];
+             document.getElementById('tableDate').innerHTML = currenrdate;
+    </script>
+</body>
+</html>

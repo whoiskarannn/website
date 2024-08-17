@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Attendence Report</title>
+  <style>
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: center;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    th{
+      min-width: 75px;
+      background: #49e7e7ab;
+    }
+    tr:nth-child(even){
+      background: #49e7e7ab;
+    }
+    #search_field{
+      margin: 20px;
+    }
+    #exportBtn{
+      border-radius: 5px;
+      color: white;
+      outline: none;
+      border: none;
+      padding: 10px;
+      background: rgb(3, 173, 133);
+      margin-bottom: 10px;
+    }
+    #exportBtn:hover{
+      transition: 0.5s;
+      background: rgb(1, 114, 88);
+    }
+  </style>
+</head>
+<body>
+  <a style=" left: 0; margin-top: 5px; padding-left: 20px; " href="home.html">Home</a>
+   
+  <h1>Student Attendence Report</h1>
+  <h2 style="margin-top: -20px;">For class 1</h2>
+  <div id="search_field">
+    <label for="searchInput">Search for name :</label>
+    <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Search for names..">
+  </div>
+ 
+  <button id="exportBtn">Export file to Excel</button>
+
+  <table id="dataTable">
+    <thead>
+      <tr>
+        <!-- Table header will be dynamically inserted here -->
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Table rows will be dynamically inserted here -->
+    </tbody>
+  </table>
+
+
+
+
+  <!-- displaying the tabel with name and date with present and absent mark -->
+  <script>
+    async function fetchStudentData() {
+      try {
+        const response = await fetch('/studentsttrdata');
+        const data = await response.json();
+
+        if (Array.isArray(data) && data.length > 0) {
+          const tableHeader = document.querySelector('#dataTable thead tr');
+          const tableBody = document.querySelector('#dataTable tbody');
+
+          // Extracting unique field names from the first document
+          let fields = Object.keys(data[0]).filter(field => 
+        field !== '_id' && field !== 'email' && field !== 'rollno' && field !== 'gender'  && field !== 'password'  && field !== '__v'
+      );
+          const studentNameField = fields.shift(); // Remove 'studentname' from fields
+          const sortedDateFields = fields.sort((a, b) => new Date(a) - new Date(b));
+
+          // Reconstruct fields with 'studentname' at the start
+          fields = [studentNameField, ...sortedDateFields];
+
+          tableHeader.innerHTML = fields.map(field => `<th>${field}</th>`).join('');
+
+          tableBody.innerHTML = data.map(item => {
+            return `<tr>${fields.map(field => `<td>${item[field] || ''}</td>`).join('')}</tr>`;
+          }).join('');
+        } else {
+          document.querySelector('#dataTable tbody').innerHTML = '<tr><td colspan="100%">No data available</td></tr>';
+        }
+      } catch (error) {
+        console.error('Error fetching student data:', error);
+      }
+    }
+
+    fetchStudentData();
+
+   
+    function exportToExcel() {
+            const table = document.querySelector('#dataTable');
+            const ws = XLSX.utils.table_to_sheet(table);
+            const wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+            XLSX.writeFile(wb, 'student_data.xlsx');
+          
+        }
+
+        document.getElementById('exportBtn').addEventListener('click', exportToExcel);
+        fetchStudentData();
+
+  </script>
+  <!-- displaying the tabel with name and date with present and absent mark -->
+
+<!-- filtering the tabel for a specific name -->
+  <script>
+    function searchTable() {
+    var input = document.getElementById("searchInput").value.toUpperCase();
+    
+    var table = document.getElementById("dataTable");
+    var tr = table.getElementsByTagName("tr");
+    
+    for (var i = 1; i < tr.length; i++) {
+      var td = tr[i].getElementsByTagName("td")[0]; 
+      if (td) {
+        var txtValue = td.textContent || td.innerText;
+        if (txtValue.toUpperCase().indexOf(input) > -1) {
+          tr[i].style.display = ""; 
+        } else {
+          tr[i].style.display = "none";
+        }
+      }       
+    }
+  }
+
+ 
+
+  </script>
+<!-- filtering the tabel for a specific name -->
+<!-- function for exporting data into exel -->
+
+ <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+
+<!-- function for exporting data into exel -->
+</body>
+</html>

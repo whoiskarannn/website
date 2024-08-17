@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login Page</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <a style="position: absolute; left: 0; padding-left: 20px; " href="home.html">Home</a>
+    
+    <div class="container">
+       
+        <form action="/teacherslogin" method="post" class="loginForm"> <h2>Login</h2>
+            <input type="text" id="username" name="username" placeholder="Username" required>
+            <input type="password" id="password" name="password" placeholder="Password" required>
+            <button type="submit">Log in</button>
+        </form>
+        <div id="message" class="message"></div>
+    </div>
+    <script src="server.js"></script>
+</body>
+</html>

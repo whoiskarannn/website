@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+  <link rel="stylesheet" href="server.js">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <a href="/studentsdata.html">Students data</a>
+  <a href="/todays_remark.html">Mark todays attendence</a>
+
+  <h1>Student Marks Chart</h1>
+  <canvas  height="20vh" width="50vw" style="display: flex; flex-direction: column;" id="marksChart"></canvas>
+
+  <script>
+    fetch('/student-marks')
+      .then(response => response.json())
+      .then(data => {
+
+        const studentNames = data.map(student => student.studentname);
+        const mathMarks = data.map(student => student.marks.math);
+        const scienceMarks = data.map(student => student.marks.science);
+        const englishMarks = data.map(student => student.marks.english);
+
+        const ctx = document.getElementById('marksChart').getContext('2d');
+        const marksChart = new Chart(ctx, {
+          type: 'bar', // You can change this to 'line', 'pie', etc.
+          data: {
+            labels: studentNames,
+            datasets: [
+              {
+                label: 'Math',
+                data: mathMarks,
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1
+              },
+              {
+                label: 'Science',
+                data: scienceMarks,
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+              },
+              {
+                label: 'English',
+                data: englishMarks,
+                backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                borderColor: 'rgba(255, 206, 86, 1)',
+                borderWidth: 1
+              }
+            ]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }
+        });
+      });
+      
+  </script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script> 
+<script src="server.js"></script>
+</html>
